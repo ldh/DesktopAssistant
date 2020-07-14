@@ -84,4 +84,6 @@ public static class WindowsAPI {
             SetWindowLong(hWnd, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TRANSPARENT);
         }
     }
+    
+    
 }
