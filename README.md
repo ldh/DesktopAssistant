@@ -1,6 +1,8 @@
-## DesktopAssistant
+# DesktopAssistant
 
-	A transparent app made with unity
+	##A transparent app made with unity, display specific objects on the desktop without blocking other parts
+	
+
  
 
 
