@@ -14,13 +14,30 @@ Add something cute to your desktop so you won’t be alone. This project uses Li
 
 In order to achieve these effects, we only need to use  namespace ```System.Runtime.InteropServices``` in C# to import related dll and use the method in it.
 
-View http://www.pinvoke.net/ to learn more about this. This project mainly used method in user32.dll.
+View http://www.pinvoke.net/ to learn more about this. This project mainly used user32.dll , using DllImport attribute to define the method in it.
+
+Here are a few examples:
 
 ```csharp
     [DllImport("user32.dll")]
     private static extern IntPtr GetActiveWindow();
 ```
 
+```csharp
+    [DllImport("user32.dll")]
+    private static extern int SetWindowLong(IntPtr hWnd, int nIndex, uint dwNewLong);
+```
+
+```csharp
+    [DllImport("user32.dll", SetLastError = true)]
+    private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+```
+
+Make sure about this when you build the project:
+ * The camera's background color is (0,0,0,0).
+ * View the settings in **Resolution and Presentation**
+
+If you want to know more, download the project and try it!
 
 ## Write at the end
 
