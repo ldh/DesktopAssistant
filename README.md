@@ -1,10 +1,44 @@
 # DesktopAssistant
-A transparent app made with unity
 
-Unity也是可以制作透明背景的程序的，使用几个简单的WindowsAPI即可。借助```System.Runtime.InteropServices```引入相关Dll并使用其中的方法即可，更多WindowsAPI相关信息可以查看 http://www.pinvoke.net/ ， 本项目主要是用了user32.dll中的相关方法。
-
-本项目使用Live2D相关素材制作了一个萌萌哒妹子，包含一些简单的互动，这样写代码的时候就不会寂寞了。当然你可以换成任何你想要的的东西并把他们显示到你的桌面上。
-
+A transparent app made with unity, display specific objects on the desktop without blocking other parts.
+	
+## What does this project do?
+ 
+Usually the projects  we made with unity are full screen and we can’t penetrate it to see or interact other content on the desktop. But in fact we can do this kind of operation in unity now with a few simple WindowsAPI. Knowing this, we can do some wonderful things as shown in the picture below.
+	
 ![示例](http://blog.lidonghui.xyz:8080/Github/DesktopAssistant1.jpg)
 
-后续我会添加更多的素材进去。
+Add something cute to your desktop so you won’t be alone. This project uses Live2D  to create a cute girl, including some simple interactions.
+
+## Docs
+
+In order to achieve these effects, we only need to use  namespace ```System.Runtime.InteropServices``` in C# to import related dll and use the method in it.
+
+View http://www.pinvoke.net/ to learn more about this. This project mainly used user32.dll , using DllImport attribute to define the method in it.
+
+Here are a few examples:
+
+```csharp
+    [DllImport("user32.dll")]
+    private static extern IntPtr GetActiveWindow();
+```
+
+```csharp
+    [DllImport("user32.dll")]
+    private static extern int SetWindowLong(IntPtr hWnd, int nIndex, uint dwNewLong);
+```
+
+```csharp
+    [DllImport("user32.dll", SetLastError = true)]
+    private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+```
+
+Make sure about this when you build the project:
+ * The camera's background color is (0,0,0,0).
+ * View the settings in **Resolution and Presentation**
+
+If you want to know more, download the project and try it!
+
+## Write at the end
+
+I will gradually add more features and materials. Just give me a star if you find it useful :smile:.
