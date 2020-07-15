@@ -16,7 +16,7 @@ In order to achieve these effects, we only need to use  namespace ```System.Runt
 
 View http://www.pinvoke.net/ to learn more about this. This project mainly used user32.dll , using DllImport attribute to define the method in it.
 
-Here are a few examples:
+Here are a few examples below, more documentation is comming...
 
 ```csharp
     [DllImport("user32.dll")]
