@@ -35,7 +35,7 @@ Here are a few examples:
 
 Make sure about this when you build the project:
  * The camera's background color is (0,0,0,0).
- * View the settings in **Resolution and Presentation**
+ * View the settings in **Resolution and Presentation** of the project.
 
 If you want to know more, download the project and try it!
 
