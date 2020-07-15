@@ -16,6 +16,11 @@ In order to achieve these effects, we only need to use  namespace ```System.Runt
 
 View http://www.pinvoke.net/ to learn more about this. This project mainly used method in user32.dll.
 
+```csharp
+    [DllImport("user32.dll")]
+    private static extern IntPtr GetActiveWindow();
+```
+
 
 ## Write at the end
 
