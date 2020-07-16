@@ -1,52 +1,34 @@
 # DesktopAssistant
 
-A transparent app made with unity, display specific objects on the desktop without blocking other parts.
+一个使用Unity制作的透明app， 只把特定的物体显示到桌面上， 其他部分不会遮挡你的桌面并且仍旧是可交互的。
 	
-## What does this project do?
+## 这个项目是干什么的？
  
-Usually the projects  we made with unity are full screen and we can’t penetrate it to see or interact other content on the desktop. But in fact we can do this kind of operation in unity now with a few simple WindowsAPI. Knowing this, we can do some wonderful things as shown in the picture below.
+ 通常我们使用Unity制作的项目都是全屏并且完全遮挡住桌面的，我们不能穿透它看到桌面的其它东西，也就不能交互了。但事实上我们是可以用Unity实现这个功能的， 只需要借助几个简单的WindowsAPI。 了解了这些，我们就可以做一些好玩的东西了。
 	
 ![示例](http://blog.lidonghui.xyz:8080/Github/DesktopAssistant1.jpg)
 
-Add something cute to your desktop so you won’t be alone. This project uses Live2D  to create a cute girl, including some simple interactions.
+比如这样，在你桌面上添加一个萌萌的妹子陪你一起写代码，这样你就不会孤单了。你可以和她进行一些互动，而其他地方是透明的不会影响你的其它工作。
 
-## Docs
+你也可以使用3D素材做出你想要的东西。
 
-In order to achieve these effects, we only need to use  namespace ```System.Runtime.InteropServices``` in C# to import related dll and use the method in it.
+## 相关教程
 
-View http://www.pinvoke.net/ to learn more about this. This project mainly used user32.dll , using DllImport attribute to define the method in it.
+为了做到这个效果我们需要使用命名空间 ```System.Runtime.InteropServices``` 下的```[DllImport("xxx.dll")]```来导入一些Dll并使用其中的方法，在项目下WindowsAPI脚本中查看更多方法的解析。
 
-Here are a few examples below, more documentation is comming...
+本项目主要使用```user32.dll``` , 查看 http://www.pinvoke.net/ 了解更多Dll文件的使用方法，也许你可以做出更多好玩的功能。 
 
-```csharp
-    [DllImport("user32.dll")]
-    private static extern IntPtr GetActiveWindow();
-```
+如果你想在自己的项目中使用该功能，打包的时候要注意如下几点：
+ * 把Camera的背景颜色改成(0,0,0,0)。
+ * 参照本项目**Resolution and Presentation**的配置修改你自己的项目。
 
-```csharp
-    [DllImport("user32.dll")]
-    private static extern int SetWindowLong(IntPtr hWnd, int nIndex, uint dwNewLong);
-```
+目前有的功能:
+ * 右键点住妹子可以拖动她的位置。
+ * 左键点击她可以有一些交互的反应。
+ * 妹子会一直盯着你的鼠标位置。
 
-```csharp
-    [DllImport("user32.dll", SetLastError = true)]
-    private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
-```
+想了解更多就自己下载了打个包试试吧。
 
-Make sure about this when you build a transparent project:
- * The camera's background color is (0,0,0,0).
- * View the settings in **Resolution and Presentation** of this project.
- 
- 
-Existing functions:
- * Right click on the girl to move her position.
- * Left click on the girl to interact with her.
- * The girl will aim at your mouse position.
+## 结语
 
-
-
-If you want to know more, download the project and try it!
-
-## Write at the end
-
-I will gradually add more features and materials. Just give me a star if you find it useful :smile:.
+我会逐渐添加更多的功能和素材进去，如果你觉得有用得话就给点个Star吧 :smile:。
