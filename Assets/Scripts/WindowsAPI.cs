@@ -44,10 +44,8 @@ public static class WindowsAPI {
     /// <returns></returns>
     [DllImport("user32.dll", SetLastError = true)]
     private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
-
-    // [DllImport("user32.dll")]
-    // private static extern int SetLayeredWindowAttributes(IntPtr hWnd, uint crKey, byte bAlpha, uint dwFlags);
-
+    
+    [StructLayout(LayoutKind.Sequential)]
     public struct MARGINS {
         public int cxLeftWidth;
         public int cxRightWidth;
@@ -55,28 +53,34 @@ public static class WindowsAPI {
         public int cyBottomHeight;
     }
 
+    /// <summary>
+    /// 让你的窗口变透明（显示上的）
+    /// </summary>
+    /// <param name="hWnd"></param>
+    /// <param name="margins"></param>
+    /// <returns></returns>
     [DllImport("Dwmapi.dll")]
-    public static extern uint DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS margins);
+    private static extern uint DwmExtendFrameIntoClientArea(IntPtr hWnd, ref MARGINS margins);
+
+    // [DllImport("user32.dll")]
+    // private static extern int SetLayeredWindowAttributes(IntPtr hWnd, uint crKey, byte bAlpha, uint dwFlags);
+    
 
     /// <summary>
     /// 扩展样式
     /// </summary>
     private const int GWL_EXSTYLE = -20;
-
     
     private const uint WS_EX_LAYERED = 0x00080000;
     private const uint WS_EX_TRANSPARENT = 0x00000020;
 
     private static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
 
-    private const uint LWA_COLORKEY = 0x00000001;
-
     /// <summary>
     /// 保存当前窗口的Handle
     /// </summary>
     private static IntPtr hWnd;
     
-
     /// <summary>
     /// 不要在编辑器模式下运行此方法，当然你不信的话你可以试试 ^.^
     /// </summary>
@@ -85,6 +89,7 @@ public static class WindowsAPI {
         hWnd = GetActiveWindow();
 
         MARGINS margins = new MARGINS { cxLeftWidth = -1 };
+        
         DwmExtendFrameIntoClientArea(hWnd, ref margins);
 
         SetWindowLong(hWnd, GWL_EXSTYLE, WS_EX_LAYERED | WS_EX_TRANSPARENT);
