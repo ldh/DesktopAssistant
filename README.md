@@ -33,9 +33,17 @@ Here are a few examples below, more documentation is comming...
     private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 ```
 
-Make sure about this when you build the project:
+Make sure about this when you build a transparent project:
  * The camera's background color is (0,0,0,0).
- * View the settings in **Resolution and Presentation** of the project.
+ * View the settings in **Resolution and Presentation** of this project.
+ 
+ 
+Existing functions:
+ * Right click on the girl to move her position.
+ * Left click on the girl to interact with her.
+ * The girl will aim at your mouse position.
+
+
 
 If you want to know more, download the project and try it!
 
