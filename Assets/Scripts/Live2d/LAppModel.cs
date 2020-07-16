@@ -4,37 +4,17 @@ using System.Text.RegularExpressions;
 using live2d.framework;
 using live2d;
 
-/*
- * LAppModel包装了低级Live2D模型定义类Live2DModelUnity
-  *实用类，便于处理。
- *
- *
-  *功能列表
-  *空转动作
-  面部表情
-  *声音
-  *通过物理操作动画
-  *没有动作时自动抓眼
-  *通过部分切换改变姿势
-  *打击判断
-  *呼吸动画
-  *拖动动画
-  *由于设备倾斜而产生的动画
- *
- */
+
 public class LAppModel :L2DBaseModel
 {
-    private LAppModelProxy parent;
+    private ModelProxy parent;
     private LAppView view;
+    
+    private string modelHomeDir;
+    private ModelSetting modelSetting = null;
 
-    //  模型相关
-    private String modelHomeDir;
-    private ModelSetting modelSetting = null;   //  模型文件和动作的定义
-
-    private Matrix4x4 matrixHitArea; // 　对于命中区域绘图
-
-
-    //  音声
+    private Matrix4x4 matrixHitArea;
+    
     private AudioSource asVoice;
 
     System.Random rand = new System.Random();
@@ -44,7 +24,7 @@ public class LAppModel :L2DBaseModel
 
 
 
-    public LAppModel(LAppModelProxy p)
+    public LAppModel(ModelProxy p)
     {
         if (isInitialized()) return;
         parent = p;
